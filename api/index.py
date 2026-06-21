@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-client = genai.Client(api_key=os.environ.get("SERVICE_KEY"))
+
 
 _CFG = """أنت "وثّق بوت" — مساعد متخصص في منصة وَثِّق، منصة مصرية رقمية لتذكير المستخدمين بمواعيد تجديد وثائقهم الرسمية.
 
@@ -60,6 +60,11 @@ _CFG = """أنت "وثّق بوت" — مساعد متخصص في منصة وَ�
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
+        api_key = os.environ.get("SERVICE_KEY")
+        if not api_key:
+            return jsonify({"error": "عذراً، هناك مشكلة في إعدادات السيرفر (SERVICE_KEY غير موجود)."}), 500
+        client = genai.Client(api_key=api_key)
+        
         data = request.get_json()
         messages = data.get("messages", [])
 
