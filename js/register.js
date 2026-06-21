@@ -1,4 +1,4 @@
-﻿//* ================> ØµÙØ­Ù‡ Ø§Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨  <===================
+//* ================> ØµÙØ­Ù‡ Ø§Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨  <===================
 
 // ?=====>  globel   <====
 const inputs = document.querySelectorAll("input");
@@ -77,10 +77,10 @@ function setForm() {
 }
 //callapi
 async function registerForm(userData) {
-  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
+  loooder.classList.remove("d-none"); //اظهار looder
 
   const api = await fetch(
-    `https://graduation-backend-production-d4bd.up.railway.app/api/v1/auth/register`,
+    `/api/v1/auth/register`,
     {
       method: "POST",
       body: JSON.stringify(userData),

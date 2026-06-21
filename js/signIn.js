@@ -1,4 +1,4 @@
-﻿//* ================> ØµÙØ­Ù‡ ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„  <===================
+//* ================> ØµÙØ­Ù‡ ØªØ³Ø¬ÙŠÙ„ Ø¯Ø®ÙˆÙ„  <===================
 //* ================>   <===================
 
 // ?=====>  globel   <====
@@ -70,7 +70,7 @@ function setForm() {
 async function loginForm(userData) {
   loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   const api = await fetch(
-    `https://graduation-backend-production-d4bd.up.railway.app/api/v1/auth/login`,
+    `/api/v1/auth/login`,
     {
       method: "POST",
       body: JSON.stringify(userData),
