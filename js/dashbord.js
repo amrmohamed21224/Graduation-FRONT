@@ -1,4 +1,4 @@
-// ?=====>  globel   <====
+﻿// ?=====>  globel   <====
 const loooder = document.getElementById("loooder");
 const tokenUser = localStorage.getItem("tokenUser");
 let searchInput = document.getElementById("searchInput");
@@ -10,24 +10,29 @@ getDataMe();
 //*=====>  events   <====
 // log out
 document.getElementById("logOut").addEventListener("click", function () {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ã˜Â§Ã˜Â¸Ã™â€¡Ã˜Â§Ã˜Â± looder
   localStorage.removeItem("tokenUser");
   location.href = "./signIn.html";
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ã˜Â§Ã˜Â®Ã™ Ã˜Â§Ã˜Â¡ looder
 });
-//اجيب اول الصفحه
+//Ã˜Â§Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â§Ã™Ë†Ã™â€ž Ã˜Â§Ã™â€žÃ˜ÂµÃ™ Ã˜Â­Ã™â€¡
 window.scrollTo({
   top: 0,
   // behavior: "",
 });
+
+// Ø±Ø¨Ø· Ø­Ù‚Ù„ Ø§Ù„Ø¨Ø­Ø« Ø¨Ø¯Ø§Ù„Ø© Ø§Ù„Ø¨Ø­Ø« (BUG-017 Fix)
+if (searchInput) {
+  searchInput.addEventListener("input", searcData);
+}
 //!=====>  function   <====
-//* عرض البيانات
+//* Ã˜Â¹Ã˜Â±Ã˜Â¶ Ã˜Â§Ã™â€žÃ˜Â¨Ã™Å Ã˜Â§Ã™â€ Ã˜Â§Ã˜Âª
 async function getDataDashbord() {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ã˜Â§Ã˜Â¸Ã™â€¡Ã˜Â§Ã˜Â± looder
   const api = await fetch(
     `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents`,
     {
-      method: "GEt",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenUser}`,
@@ -52,7 +57,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-green">سارية</span>
+                          <span class="status status-green">Ã˜Â³Ã˜Â§Ã˜Â±Ã™Å Ã˜Â©</span>
                         </div>
   
                         <div class="title">  ${data[i].title}</div>
@@ -60,10 +65,9 @@ async function getDataDashbord() {
                         <div class="subtitle">${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -80,7 +84,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-yellow">قريب الانتهاء</span>
+                          <span class="status status-yellow">Ã™â€šÃ˜Â±Ã™Å Ã˜Â¨ Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡</span>
                         </div>
   
                         <div class="title">  ${data[i].title}</div>
@@ -88,10 +92,9 @@ async function getDataDashbord() {
                         <div class="subtitle">  ${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -107,7 +110,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-denger"> منتهيه</span>
+                          <span class="status status-denger"> Ã™â€¦Ã™â€ Ã˜ÂªÃ™â€¡Ã™Å Ã™â€¡</span>
                         </div>
   
                         <div class="title"> ${data[i].title}</div>
@@ -115,11 +118,10 @@ async function getDataDashbord() {
                         <div class="subtitle">${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
-                            <strong> ${new Date(data[i].expiryDate).toLocaleDateString()}/strong>
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
+                            <strong> ${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
                       </div>
@@ -143,7 +145,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-green">سارية</span>
+                          <span class="status status-green">Ã˜Â³Ã˜Â§Ã˜Â±Ã™Å Ã˜Â©</span>
                         </div>
   
                         <div class="title">  ${data[i].title}</div>
@@ -151,10 +153,9 @@ async function getDataDashbord() {
                         <div class="subtitle">${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -177,7 +178,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-yellow">قريب الانتهاء</span>
+                          <span class="status status-yellow">Ã™â€šÃ˜Â±Ã™Å Ã˜Â¨ Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡</span>
                         </div>
   
                         <div class="title">  ${data[i].title}</div>
@@ -185,10 +186,9 @@ async function getDataDashbord() {
                         <div class="subtitle">  ${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -212,7 +212,7 @@ async function getDataDashbord() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-denger"> منتهيه</span>
+                          <span class="status status-denger"> Ã™â€¦Ã™â€ Ã˜ÂªÃ™â€¡Ã™Å Ã™â€¡</span>
                         </div>
   
                         <div class="title"> ${data[i].title}</div>
@@ -220,11 +220,10 @@ async function getDataDashbord() {
                         <div class="subtitle">${data[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
-                            <strong> ${new Date(data[i].expiryDate).toLocaleDateString()}/strong>
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
+                            <strong> ${new Date(data[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
                       </div>
@@ -235,15 +234,15 @@ async function getDataDashbord() {
     document.getElementById("expireData").innerHTML = cartonaExpire;
     changeRogres(data);
   }
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ã˜Â§Ã˜Â®Ã™ÂÃ˜Â§Ã˜Â¡ looder
 }
 
 function changeRogres(data) {
-  const validCount = data.filter((doc) => doc.status === "valid").length; //علشان اجيب عدد الوثائق الساريه
+  const validCount = data.filter((doc) => doc.status === "valid").length; //Ã˜Â¹Ã™â€žÃ˜Â´Ã˜Â§Ã™â€  Ã˜Â§Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â¹Ã˜Â¯Ã˜Â¯ Ã˜Â§Ã™â€žÃ™Ë†Ã˜Â«Ã˜Â§Ã˜Â¦Ã™â€š Ã˜Â§Ã™â€žÃ˜Â³Ã˜Â§Ã˜Â±Ã™Å Ã™â€¡
   const aboutCount = data.filter(
     (doc) => doc.status === "about_to_expire",
-  ).length; //علشان اجيب عدد الوثائق قاربت الانتهاء
-  const expiredCount = data.filter((doc) => doc.status === "expired").length; //علشان اجيب عدد الوثائق منتهيه
+  ).length; //Ã˜Â¹Ã™â€žÃ˜Â´Ã˜Â§Ã™â€  Ã˜Â§Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â¹Ã˜Â¯Ã˜Â¯ Ã˜Â§Ã™â€žÃ™Ë†Ã˜Â«Ã˜Â§Ã˜Â¦Ã™â€š Ã™â€šÃ˜Â§Ã˜Â±Ã˜Â¨Ã˜Âª Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
+  const expiredCount = data.filter((doc) => doc.status === "expired").length; //Ã˜Â¹Ã™â€žÃ˜Â´Ã˜Â§Ã™â€  Ã˜Â§Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â¹Ã˜Â¯Ã˜Â¯ Ã˜Â§Ã™â€žÃ™Ë†Ã˜Â«Ã˜Â§Ã˜Â¦Ã™â€š Ã™â€¦Ã™â€ Ã˜ÂªÃ™â€¡Ã™Å Ã™â€¡
   const allData = data.length;
   document.querySelector(".gree").style.width =
     `${(validCount / allData) * 100}%`;
@@ -256,11 +255,11 @@ function changeRogres(data) {
   document.querySelector(".percent-red").innerHTML = `${expiredCount}`;
 }
 async function getDataMe() {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ã˜Â§Ã˜Â¸Ã™â€¡Ã˜Â§Ã˜Â± looder
   const api = await fetch(
     `https://graduation-backend-production-d4bd.up.railway.app/api/v1/users/me`,
     {
-      method: "GEt",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenUser}`,
@@ -270,7 +269,7 @@ async function getDataMe() {
   let dat = await api.json();
   //   console.log(dat.data.user);
   const data = dat.data.user.name;
-  document.getElementById("name").innerHTML = `مرحباً ${data} 👋 `;
+  document.getElementById("name").innerHTML = `Ã™â€¦Ã˜Â±Ã˜Â­Ã˜Â¨Ã˜Â§Ã™â€¹ ${data} Ã°Å¸â€˜â€¹ `;
 }
 function searcData() {
   // console.log(searchInput.value);
@@ -288,7 +287,7 @@ function searcData() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-green">سارية</span>
+                          <span class="status status-green">Ã˜Â³Ã˜Â§Ã˜Â±Ã™Å Ã˜Â©</span>
                         </div>
   
                         <div class="title">  ${allDocs[i].title}</div>
@@ -296,10 +295,9 @@ function searcData() {
                         <div class="subtitle">${allDocs[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(allDocs[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -316,7 +314,7 @@ function searcData() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-yellow">قريب الانتهاء</span>
+                          <span class="status status-yellow">Ã™â€šÃ˜Â±Ã™Å Ã˜Â¨ Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡</span>
                         </div>
   
                         <div class="title">  ${allDocs[i].title}</div>
@@ -324,10 +322,9 @@ function searcData() {
                         <div class="subtitle">  ${allDocs[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
                             <strong>${new Date(allDocs[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
@@ -343,7 +340,7 @@ function searcData() {
                             <i class="fa-solid fa-id-card"></i>
                           </div>
   
-                          <span class="status status-denger"> منتهيه</span>
+                          <span class="status status-denger"> Ã™â€¦Ã™â€ Ã˜ÂªÃ™â€¡Ã™Å Ã™â€¡</span>
                         </div>
   
                         <div class="title"> ${allDocs[i].title}</div>
@@ -351,11 +348,10 @@ function searcData() {
                         <div class="subtitle">${allDocs[i].documentId}</div>
   
                         <div class="card-footer">
-                          <a class="details" href="#"></a>
   
                           <div class="expire">
-                            تاريخ الانتهاء
-                            <strong> ${new Date(allDocs[i].expiryDate).toLocaleDateString()}/strong>
+                            Ã˜ÂªÃ˜Â§Ã˜Â±Ã™Å Ã˜Â® Ã˜Â§Ã™â€žÃ˜Â§Ã™â€ Ã˜ÂªÃ™â€¡Ã˜Â§Ã˜Â¡
+                            <strong> ${new Date(allDocs[i].expiryDate).toLocaleDateString()}</strong>
                           </div>
                         </div>
                       </div>
@@ -370,114 +366,118 @@ function searcData() {
 //?=====>  validation   <====
 //*=====>  call Function   <====
 getDataDashbord();
-// ================== تشغيل الإشعارات عند فتح الصفحة ==================
-// أول ما الصفحة تفتح نجيب الإشعارات
+// ================== Ã˜ÂªÃ˜Â´Ã˜ÂºÃ™Å Ã™â€ž Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã˜Â¹Ã™â€ Ã˜Â¯ Ã™ÂÃ˜ÂªÃ˜Â­ Ã˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ˜Â­Ã˜Â© ==================
+// Ã˜Â£Ã™Ë†Ã™â€ž Ã™â€¦Ã˜Â§ Ã˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ˜Â­Ã˜Â© Ã˜ÂªÃ™ÂÃ˜ÂªÃ˜Â­ Ã™â€ Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª
 getNotifications();
 
-// ================== جلب الإشعارات من السيرفر ==================
+// ================== Ã˜Â¬Ã™â€žÃ˜Â¨ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã™â€¦Ã™â€  Ã˜Â§Ã™â€žÃ˜Â³Ã™Å Ã˜Â±Ã™ÂÃ˜Â± ==================
 async function getNotifications() {
   try {
-    // طلب API لجلب الإشعارات غير المقروءة
+    // Ã˜Â·Ã™â€žÃ˜Â¨ API Ã™â€žÃ˜Â¬Ã™â€žÃ˜Â¨ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã˜ÂºÃ™Å Ã˜Â± Ã˜Â§Ã™â€žÃ™â€¦Ã™â€šÃ˜Â±Ã™Ë†Ã˜Â¡Ã˜Â©
     const res = await fetch(
       "https://graduation-backend-production-d4bd.up.railway.app/api/v1/notifications",
       {
         method: "GET",
 
         headers: {
-          // إرسال التوكن عشان السيرفر يعرف المستخدم
+          // Ã˜Â¥Ã˜Â±Ã˜Â³Ã˜Â§Ã™â€ž Ã˜Â§Ã™â€žÃ˜ÂªÃ™Ë†Ã™Æ’Ã™â€  Ã˜Â¹Ã˜Â´Ã˜Â§Ã™â€  Ã˜Â§Ã™â€žÃ˜Â³Ã™Å Ã˜Â±Ã™ÂÃ˜Â± Ã™Å Ã˜Â¹Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ™â€¦Ã˜Â³Ã˜ÂªÃ˜Â®Ã˜Â¯Ã™â€¦
           Authorization: `Bearer ${tokenUser}`,
 
-          // منع استخدام الكاش (عشان يجيب أحدث بيانات)
+          // Ã™â€¦Ã™â€ Ã˜Â¹ Ã˜Â§Ã˜Â³Ã˜ÂªÃ˜Â®Ã˜Â¯Ã˜Â§Ã™â€¦ Ã˜Â§Ã™â€žÃ™Æ’Ã˜Â§Ã˜Â´ (Ã˜Â¹Ã˜Â´Ã˜Â§Ã™â€  Ã™Å Ã˜Â¬Ã™Å Ã˜Â¨ Ã˜Â£Ã˜Â­Ã˜Â¯Ã˜Â« Ã˜Â¨Ã™Å Ã˜Â§Ã™â€ Ã˜Â§Ã˜Âª)
           "Cache-Control": "no-cache",
           Pragma: "no-cache",
         },
 
-        // إجبار المتصفح إنه ما يستخدمش بيانات قديمة
+        // Ã˜Â¥Ã˜Â¬Ã˜Â¨Ã˜Â§Ã˜Â± Ã˜Â§Ã™â€žÃ™â€¦Ã˜ÂªÃ˜ÂµÃ™ÂÃ˜Â­ Ã˜Â¥Ã™â€ Ã™â€¡ Ã™â€¦Ã˜Â§ Ã™Å Ã˜Â³Ã˜ÂªÃ˜Â®Ã˜Â¯Ã™â€¦Ã˜Â´ Ã˜Â¨Ã™Å Ã˜Â§Ã™â€ Ã˜Â§Ã˜Âª Ã™â€šÃ˜Â¯Ã™Å Ã™â€¦Ã˜Â©
         cache: "no-store",
       },
     );
 
-    // تحويل الرد إلى JSON
+    // Ã˜ÂªÃ˜Â­Ã™Ë†Ã™Å Ã™â€ž Ã˜Â§Ã™â€žÃ˜Â±Ã˜Â¯ Ã˜Â¥Ã™â€žÃ™â€° JSON
     const dat = await res.json();
 
-    // طباعة النتيجة في الكونسول للتجربة
+    // Ã˜Â·Ã˜Â¨Ã˜Â§Ã˜Â¹Ã˜Â© Ã˜Â§Ã™â€žÃ™â€ Ã˜ÂªÃ™Å Ã˜Â¬Ã˜Â© Ã™ÂÃ™Å  Ã˜Â§Ã™â€žÃ™Æ’Ã™Ë†Ã™â€ Ã˜Â³Ã™Ë†Ã™â€ž Ã™â€žÃ™â€žÃ˜ÂªÃ˜Â¬Ã˜Â±Ã˜Â¨Ã˜Â©
     console.log("Notifications:", dat);
 
-    // لو العملية ناجحة
+    // Ã™â€žÃ™Ë† Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™â€žÃ™Å Ã˜Â© Ã™â€ Ã˜Â§Ã˜Â¬Ã˜Â­Ã˜Â©
     if (dat.success) {
-      // إرسال الإشعارات لدالة العرض
+      // Ã˜Â¥Ã˜Â±Ã˜Â³Ã˜Â§Ã™â€ž Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã™â€žÃ˜Â¯Ã˜Â§Ã™â€žÃ˜Â© Ã˜Â§Ã™â€žÃ˜Â¹Ã˜Â±Ã˜Â¶
       renderNotifications(dat?.data?.notifications || []);
     }
   } catch (err) {
-    // في حالة وجود خطأ في الاتصال
+    // Ã™ÂÃ™Å  Ã˜Â­Ã˜Â§Ã™â€žÃ˜Â© Ã™Ë†Ã˜Â¬Ã™Ë†Ã˜Â¯ Ã˜Â®Ã˜Â·Ã˜Â£ Ã™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜Â§Ã˜ÂªÃ˜ÂµÃ˜Â§Ã™â€ž
     console.error("Error:", err);
   }
 }
 
-// ================== عرض الإشعارات في الصفحة ==================
+// ================== Ã˜Â¹Ã˜Â±Ã˜Â¶ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ˜Â­Ã˜Â© ==================
 function renderNotifications(notifications) {
-  // عنصر القائمة في HTML
+  // Ã˜Â¹Ã™â€ Ã˜ÂµÃ˜Â± Ã˜Â§Ã™â€žÃ™â€šÃ˜Â§Ã˜Â¦Ã™â€¦Ã˜Â© Ã™ÂÃ™Å  HTML
   const list = document.getElementById("notiList");
 
-  // عنصر العداد فوق الجرس
+  // Ã˜Â¹Ã™â€ Ã˜ÂµÃ˜Â± Ã˜Â§Ã™â€žÃ˜Â¹Ã˜Â¯Ã˜Â§Ã˜Â¯ Ã™ÂÃ™Ë†Ã™â€š Ã˜Â§Ã™â€žÃ˜Â¬Ã˜Â±Ã˜Â³
   const count = document.getElementById("notiCount");
 
-  // تفريغ القائمة قبل إعادة الرسم
+  // Ã˜ÂªÃ™ÂÃ˜Â±Ã™Å Ã˜Âº Ã˜Â§Ã™â€žÃ™â€šÃ˜Â§Ã˜Â¦Ã™â€¦Ã˜Â© Ã™â€šÃ˜Â¨Ã™â€ž Ã˜Â¥Ã˜Â¹Ã˜Â§Ã˜Â¯Ã˜Â© Ã˜Â§Ã™â€žÃ˜Â±Ã˜Â³Ã™â€¦
   list.innerHTML = "";
 
-  // لو مفيش إشعارات
+  // Ã™â€žÃ™Ë† Ã™â€¦Ã™ÂÃ™Å Ã˜Â´ Ã˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª
   if (notifications.length === 0) {
     list.innerHTML = `
       <li class="dropdown-item text-center text-muted">
-        لا يوجد إشعارات
+        Ã™â€žÃ˜Â§ Ã™Å Ã™Ë†Ã˜Â¬Ã˜Â¯ Ã˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª
       </li>
     `;
 
-    // تصفير العداد
+    // Ã˜ÂªÃ˜ÂµÃ™ÂÃ™Å Ã˜Â± Ã˜Â§Ã™â€žÃ˜Â¹Ã˜Â¯Ã˜Â§Ã˜Â¯
     count.textContent = 0;
 
     return;
   }
 
-  // ================== عرض كل إشعار ==================
+  // ================== Ã˜Â¹Ã˜Â±Ã˜Â¶ Ã™Æ’Ã™â€ž Ã˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â± ==================
   for (let i = 0; i < notifications.length; i++) {
     const n = notifications[i];
 
-    // إضافة كل إشعار في القائمة
+    // Ã˜Â¥Ã˜Â¶Ã˜Â§Ã™ÂÃ˜Â© Ã™Æ’Ã™â€ž Ã˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â± Ã™ÂÃ™Å  Ã˜Â§Ã™â€žÃ™â€šÃ˜Â§Ã˜Â¦Ã™â€¦Ã˜Â©
     list.innerHTML += `
       <li class="dropdown-item" style="cursor:pointer"
           onclick="markAsRead('${n._id}')">
 
-        <!-- نص الإشعار -->
+        <!-- Ã™â€ Ã˜Âµ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â± -->
         ${n.message}
 
       </li>
     `;
   }
 
-  // تحديث عدد الإشعارات
+  // Ã˜ÂªÃ˜Â­Ã˜Â¯Ã™Å Ã˜Â« Ã˜Â¹Ã˜Â¯Ã˜Â¯ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª
   count.textContent = notifications.length;
 }
 
-// ================== تعليم الإشعار كمقروء ==================
+// ================== Ã˜ÂªÃ˜Â¹Ã™â€žÃ™Å Ã™â€¦ Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â± Ã™Æ’Ã™â€¦Ã™â€šÃ˜Â±Ã™Ë†Ã˜Â¡ ==================
 async function markAsRead(id) {
   try {
-    // إرسال طلب للسيرفر لتغيير حالة الإشعار إلى "مقروء"
+    // Ã˜Â¥Ã˜Â±Ã˜Â³Ã˜Â§Ã™â€ž Ã˜Â·Ã™â€žÃ˜Â¨ Ã™â€žÃ™â€žÃ˜Â³Ã™Å Ã˜Â±Ã™ÂÃ˜Â± Ã™â€žÃ˜ÂªÃ˜ÂºÃ™Å Ã™Å Ã˜Â± Ã˜Â­Ã˜Â§Ã™â€žÃ˜Â© Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â± Ã˜Â¥Ã™â€žÃ™â€° "Ã™â€¦Ã™â€šÃ˜Â±Ã™Ë†Ã˜Â¡"
     await fetch(
       `https://graduation-backend-production-d4bd.up.railway.app/api/v1/notifications/${id}/read`,
       {
         method: "PATCH",
 
         headers: {
-          // التوكن للتأكد من المستخدم
+          // Ã˜Â§Ã™â€žÃ˜ÂªÃ™Ë†Ã™Æ’Ã™â€  Ã™â€žÃ™â€žÃ˜ÂªÃ˜Â£Ã™Æ’Ã˜Â¯ Ã™â€¦Ã™â€  Ã˜Â§Ã™â€žÃ™â€¦Ã˜Â³Ã˜ÂªÃ˜Â®Ã˜Â¯Ã™â€¦
           Authorization: `Bearer ${tokenUser}`,
         },
       },
     );
 
-    // إعادة تحميل الإشعارات بعد التحديث
+    // Ã˜Â¥Ã˜Â¹Ã˜Â§Ã˜Â¯Ã˜Â© Ã˜ÂªÃ˜Â­Ã™â€¦Ã™Å Ã™â€ž Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â´Ã˜Â¹Ã˜Â§Ã˜Â±Ã˜Â§Ã˜Âª Ã˜Â¨Ã˜Â¹Ã˜Â¯ Ã˜Â§Ã™â€žÃ˜ÂªÃ˜Â­Ã˜Â¯Ã™Å Ã˜Â«
     getNotifications();
   } catch (err) {
     console.error(err);
   }
 }
+
+
+
+

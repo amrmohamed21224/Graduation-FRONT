@@ -92,8 +92,9 @@
               <form>
                 <!-- Name -->
                 <div class="input-group">
-                  <i class="fa fa-user"></i>
-                  <input type="text" placeholder="الاسم بالكامل" />
+                  <label for="nameInput" class="visually-hidden">الاسم بالكامل</label>
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <input id="nameInput" type="text" placeholder="الاسم بالكامل" />
                 </div>
                 <!-- alert Name -->
                 <ul id="alertName" class="alert alert-danger p-2 d-none">
@@ -103,8 +104,9 @@
 
                 <!-- email -->
                 <div class="input-group">
-                  <i class="fa fa-envelope"></i>
-                  <input type="email" placeholder="البريد الإلكتروني" />
+                  <label for="emailInput" class="visually-hidden">البريد الإلكتروني</label>
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <input id="emailInput" type="email" placeholder="البريد الإلكتروني" />
                 </div>
                 <!-- alert email -->
                 <ul id="alertEmail" class="alert alert-danger p-2 d-none">
@@ -117,6 +119,7 @@
                         </div> -->
                 <!-- passWord -->
                 <div class="input-group password-box">
+                  <label for="registerPassword" class="visually-hidden">كلمة المرور</label>
                   <input
                     id="registerPassword"
                     autocomplete="new-password"
@@ -126,6 +129,9 @@
                   <i
                     class="fa fa-eye toggle-password"
                     id="toggleRegisterPassword"
+                    role="button"
+                    aria-label="إظهار كلمة المرور"
+                    tabindex="0"
                   ></i>
                 </div>
                 <!-- alert password -->
@@ -137,7 +143,6 @@
                 </ul>
 
                 <button
-                  href="./register.html"
                   class="register-btn"
                   id="btnRegister"
                   type="submit"

@@ -66,7 +66,7 @@
 /* document cards */
 #dashboard .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -78,6 +78,13 @@
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: default;
+}
+
+#dashboard .doc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
 }
 
 #dashboard .doc-card.national {

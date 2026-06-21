@@ -1,4 +1,4 @@
-// ?=====>  globel   <====
+﻿// ?=====>  globel   <====
 const loooder = document.getElementById("loooder");
 
 //!=====>  when start   <====
@@ -6,12 +6,12 @@ const loooder = document.getElementById("loooder");
 //*=====>  events   <====
 // log out
 document.getElementById("logOut").addEventListener("click", function () {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   localStorage.removeItem("tokenUser");
   location.href = "./signIn.html";
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 });
-//اجيب اول الصفحه
+//Ø§Ø¬ÙŠØ¨ Ø§ÙˆÙ„ Ø§Ù„ØµÙØ­Ù‡
 window.scrollTo({
   top: 0,
   // behavior: "",
@@ -19,3 +19,4 @@ window.scrollTo({
 //!=====>  function   <====
 
 //?=====>  validation   <====
+

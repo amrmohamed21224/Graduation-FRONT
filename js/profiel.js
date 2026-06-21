@@ -1,4 +1,4 @@
-// ?=====>  globel   <====
+﻿// ?=====>  globel   <====
 const loooder = document.getElementById("loooder");
 const tokenUser = localStorage.getItem("tokenUser");
 
@@ -7,23 +7,23 @@ const tokenUser = localStorage.getItem("tokenUser");
 //*=====>  events   <====
 // log out
 document.getElementById("logOut").addEventListener("click", function () {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   localStorage.removeItem("tokenUser");
   location.href = "./signIn.html";
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 });
-//اجيب اول الصفحه
+//Ø§Ø¬ÙŠØ¨ Ø§ÙˆÙ„ Ø§Ù„ØµÙØ­Ù‡
 window.scrollTo({
   top: 0,
   // behavior: "",
 });
 //!=====>  function   <====
 async function getDataMe() {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   const api = await fetch(
     `https://graduation-backend-production-d4bd.up.railway.app/api/v1/users/me`,
     {
-      method: "GEt",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenUser}`,
@@ -51,7 +51,8 @@ async function getDataMe() {
   document.getElementById("email").innerHTML = data.email;
   document.getElementById("role").innerHTML = data.role;
   document.getElementById("createdAt").innerHTML = formatted;
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 }
 //?=====>  validation   <====
 getDataMe();
+

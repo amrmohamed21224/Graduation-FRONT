@@ -47,21 +47,134 @@ body {
 /* end globel style */
 
 /* start navbar */
+/* start navbar */
 .aside-color,
 .navbar {
-  background-color: var(--primary-500);
+  /* Premium Glassmorphism Effect */
+  background-color: rgba(20, 91, 161, 0.95) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease;
+  padding: 0.8rem 1rem !important; /* Thicker navbar */
 }
-.navSearch:focus,
+
+/* --- Global Navbar Layout Fix --- */
+.navbar > .container {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end !important; /* Forces left clustering in RTL */
+  gap: 1.2rem;
+}
+
+/* Beautiful Logo styling - Push everything else to the left */
+.navbar-brand {
+  margin-left: auto !important; /* Magic trick: pushes logo right, pulls others left */
+  margin-right: 0 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-brand i {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+.navbar-brand:hover i {
+  transform: rotate(-10deg) scale(1.05);
+}
+
+/* --- Bell Notification Styling --- */
+.navbar .fa-bell {
+  color: #fff !important;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.navbar .dropdown:hover .fa-bell {
+  transform: scale(1.15) rotate(15deg);
+}
+.navbar #notiCount {
+  border: 2px solid #145ba1; /* Match navbar background */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  font-size: 0.65rem;
+  padding: 0.35em 0.5em;
+}
+
+/* --- Premium Toggler Button --- */
+.navbar-toggler {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s ease !important;
+  flex-shrink: 0;
+}
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px);
+}
 .navbar-toggler:focus {
   outline: none;
-  box-shadow: var(--span-color) 1px 1px 15px;
-  border: 2px solid var(--span-color);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4) !important;
 }
-.navSearch,
-.navbar-toggler {
-  background-color: var(--primary-100);
-  border: none;
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+  width: 1.2em !important;
+  height: 1.2em !important;
 }
+
+/* --- Dashboard Search Fix --- */
+.navbar .search {
+  flex: 1;
+  max-width: 400px;
+  gap: 1rem;
+}
+.navSearch {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+  transition: all 0.25s ease;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  margin: 0 !important; /* override mx-lg-5 */
+}
+.navSearch::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.navSearch:focus {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Prevent shrinking of key elements */
+.navbar .dropdown,
+.navbar .btn {
+  flex-shrink: 0;
+}
+
+
+/* Dark mode toggle — make it feel clickable */
+.dark-iecon {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.dark-iecon:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: scale(1.1);
+}
+
 /* end navbar */
 
 /* start home */
@@ -443,35 +556,102 @@ footer .foter-iecone span:hover {
 
 /* end loader */
 
-/* chattboot */
+/* ================= Premium Footer Redesign ================= */
+.foot {
+  background: linear-gradient(135deg, #0b1c3a 0%, #145ba1 100%) !important;
+  color: #e2e8f0 !important;
+  padding: 3rem 1.5rem !important;
+  border-top: 4px solid #38bdf8 !important;
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+}
 
-.boot-1 {
-  width: 50px;
-  height: 50px;
-  background-color: #16589a;
+/* Subtle background glow effect */
+.foot::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  pointer-events: none;
 }
-.boot-1 span {
-  font-size: 30px;
-  cursor: pointer;
+
+.foot h5 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
-#boobab-Chat {
-  position: fixed;
-  bottom: 75px;
-  right: 0px;
-  /* width: 40%;
-  height: 75%; */
-  border-radius: 4%;
+
+.foot p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #cbd5e1 !important;
+  opacity: 0.85;
 }
-#closs-boot {
-  cursor: pointer;
+
+/* Dark mode overrides for Footer */
+body.dark .foot {
+  background: #060b14 !important;
+  border-top: 1px solid #1e293b !important;
 }
-.hidden {
+
+body.dark .foot::before {
   display: none;
+}
+
+
+/* ===== Navbar dropdown hover states ===== */
+.dropdown-item {
+  transition: background-color 0.18s ease, color 0.18s ease;
+  border-radius: 6px;
+}
+
+.dropdown-item:hover {
+  background-color: #eff6ff;
+  color: #1e40af;
+}
+
+/* ===== Table row hover transition ===== */
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+/* ===== SweetAlert2 — Apply Cairo font & match brand ===== */
+.swal2-popup {
+  font-family: "Cairo", sans-serif !important;
+  border-radius: 18px !important;
+}
+
+.swal2-title {
+  font-family: "Cairo", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.swal2-confirm {
+  font-family: "Cairo", sans-serif !important;
+  border-radius: 10px !important;
+}
+
+.swal2-cancel {
+  font-family: "Cairo", sans-serif !important;
+  border-radius: 10px !important;
+}
+
+/* ===== Auth page link styling ===== */
+.navbar-brand {
+  transition: opacity 0.2s ease;
+}
+
+.navbar-brand:hover {
+  opacity: 0.85;
 }

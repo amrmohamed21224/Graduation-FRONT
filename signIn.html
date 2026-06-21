@@ -85,15 +85,17 @@
                   >إنشاء حساب</a
                 >
                 <a
-                  href="./index.html"
+                  href="./signIn.html"
                   class="active d-inline-block w-50 py-2 text-center"
                   >تسجيل الدخول</a
                 >
               </div>
               <form id="singIn">
                 <div class="input-group">
-                  <i class="fa fa-user"></i>
+                  <label for="emailInput" class="visually-hidden">البريد الإلكتروني</label>
+                  <i class="fa fa-user" aria-hidden="true"></i>
                   <input
+                    id="emailInput"
                     type="text"
                     class=""
                     placeholder="البريد الإلكتروني "
@@ -105,9 +107,10 @@
                 </ul>
 
                 <div class="input-group password-box">
+                  <label for="passwordInput" class="visually-hidden">كلمة المرور</label>
                   <!-- <i class="fa fa-lock"></i> -->
-                  <input type="password" autocomplete="current-password" class="" placeholder="كلمة المرور" />
-                  <i class="fa fa-eye" id="togglePassword"></i>
+                  <input id="passwordInput" type="password" autocomplete="current-password" class="" placeholder="كلمة المرور" />
+                  <i class="fa fa-eye" id="togglePassword" role="button" aria-label="إظهار كلمة المرور" tabindex="0"></i>
                 </div>
                 <!-- alert password -->
                 <ul id="alertPassWord" class="alert alert-danger p-2 d-none">
@@ -117,7 +120,6 @@
                   </li>
                 </ul>
                 <button
-                  href="./index.html"
                   class="register-btn"
                   id="btnsingIn"
                   type="submit"

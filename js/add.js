@@ -13,17 +13,22 @@ let allDocs = [];
 //*=====>  events   <====
 // log out
 document.getElementById("logOut").addEventListener("click", function () {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   localStorage.removeItem("tokenUser");
   location.href = "./signIn.html";
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 });
-//اجيب اول الصفحه
+//Ø§Ø¬ÙŠØ¨ Ø§ÙˆÙ„ Ø§Ù„ØµÙØ­Ù‡
 window.scrollTo({
   top: 0,
   // behavior: "",
 });
-// allDocs.title.toLowerCase().includes("searchInput.v".toLowerCase);
+
+// ربط حقل البحث بدالة البحث (BUG-016 Fix)
+if (searchInput) {
+  searchInput.addEventListener("input", searcData);
+}
+
 function searcData() {
   // console.log(searchInput.value);
   let term = searchInput.value; // text user
@@ -64,7 +69,7 @@ function searcData() {
                                     border-radius: 6px;
                                   "
           >
-            سارية
+            Ø³Ø§Ø±ÙŠØ©
           </span>
         </td>
            <td class="py-3">
@@ -113,7 +118,7 @@ function searcData() {
                                     border-radius: 6px;
                                   "
           >
-            على وشك الانتهاء
+            Ø¹Ù„Ù‰ ÙˆØ´Ùƒ Ø§Ù„Ø§Ù†ØªÙ‡Ø§Ø¡
           </span>
         </td>
            <td class="py-3">
@@ -162,7 +167,7 @@ function searcData() {
                                     border-radius: 6px;
                                   "
           >
-           منتهي الصلاحية
+           Ù…Ù†ØªÙ‡ÙŠ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ©
           </span>
         </td>
            <td class="py-3">
@@ -182,16 +187,16 @@ function searcData() {
   }
   allData.innerHTML = cartonaAll;
   document.getElementById("koloFoter").innerHTML =
-    ` عرض ${allDocs.length} من أصل ${allDocs.length} وثائق`;
+    ` Ø¹Ø±Ø¶ ${allDocs.length} Ù…Ù† Ø£ØµÙ„ ${allDocs.length} ÙˆØ«Ø§Ø¦Ù‚`;
 }
 //!=====>  function   <====
-//* عرض البيانات
+//* Ø¹Ø±Ø¶ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª
 async function getData() {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   const api = await fetch(
     `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents`,
     {
-      method: "GEt",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${tokenUser}`,
@@ -242,7 +247,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-            سارية
+            Ø³Ø§Ø±ÙŠØ©
           </span>
         </td>
            <td class="py-3">
@@ -291,7 +296,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-            على وشك الانتهاء
+            Ø¹Ù„Ù‰ ÙˆØ´Ùƒ Ø§Ù„Ø§Ù†ØªÙ‡Ø§Ø¡
           </span>
         </td>
            <td class="py-3">
@@ -340,7 +345,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-           منتهي الصلاحية
+           Ù…Ù†ØªÙ‡ÙŠ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ©
           </span>
         </td>
            <td class="py-3">
@@ -360,7 +365,7 @@ async function getData() {
     // allData
     allData.innerHTML = cartonaAll;
     document.getElementById("koloFoter").innerHTML =
-      ` عرض ${data.length} من أصل ${data.length} وثائق`;
+      ` Ø¹Ø±Ø¶ ${data.length} Ù…Ù† Ø£ØµÙ„ ${data.length} ÙˆØ«Ø§Ø¦Ù‚`;
 
     // validData
     let cartonaValid = ``;
@@ -399,7 +404,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-            سارية
+            Ø³Ø§Ø±ÙŠØ©
           </span>
         </td>
          <td class="py-3">
@@ -418,9 +423,9 @@ async function getData() {
     }
     // validData
     validData.innerHTML = cartonaValid;
-    const validCount = data.filter((doc) => doc.status === "valid").length; //علشان اجيب عدد الوثائق الساريه
+    const validCount = data.filter((doc) => doc.status === "valid").length; //Ø¹Ù„Ø´Ø§Ù† Ø§Ø¬ÙŠØ¨ Ø¹Ø¯Ø¯ Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ Ø§Ù„Ø³Ø§Ø±ÙŠÙ‡
     document.getElementById("validFoter").innerHTML =
-      ` عرض ${validCount} من أصل ${data.length} وثائق`;
+      ` Ø¹Ø±Ø¶ ${validCount} Ù…Ù† Ø£ØµÙ„ ${data.length} ÙˆØ«Ø§Ø¦Ù‚`;
 
     // about_to_expire
     let cartonaAboutToExpire = ``;
@@ -459,7 +464,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-            على وشك الانتهاء
+            Ø¹Ù„Ù‰ ÙˆØ´Ùƒ Ø§Ù„Ø§Ù†ØªÙ‡Ø§Ø¡
           </span>
         </td>
            <td class="py-3">
@@ -480,9 +485,9 @@ async function getData() {
     about_to_expireData.innerHTML = cartonaAboutToExpire;
     const about_to_expireCount = data.filter(
       (doc) => doc.status === "about_to_expire",
-    ).length; //علشان اجيب عدد الوثائق قربت تنتهي
+    ).length; //Ø¹Ù„Ø´Ø§Ù† Ø§Ø¬ÙŠØ¨ Ø¹Ø¯Ø¯ Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ Ù‚Ø±Ø¨Øª ØªÙ†ØªÙ‡ÙŠ
     document.getElementById("about_to_expireFoter").innerHTML =
-      ` عرض ${about_to_expireCount} من أصل ${data.length} وثائق`;
+      ` Ø¹Ø±Ø¶ ${about_to_expireCount} Ù…Ù† Ø£ØµÙ„ ${data.length} ÙˆØ«Ø§Ø¦Ù‚`;
 
     //expired
     let cartonaExpired = ``;
@@ -521,7 +526,7 @@ async function getData() {
                                     border-radius: 6px;
                                   "
           >
-           منتهي الصلاحية
+           Ù…Ù†ØªÙ‡ÙŠ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ©
           </span>
         </td>
            <td class="py-3">
@@ -540,55 +545,73 @@ async function getData() {
     }
     //expired
     expiredData.innerHTML = cartonaExpired;
-    const expiredCount = data.filter((doc) => doc.status === "expired").length; //علشان اجيب عدد الوثائق قربت تنتهي
+    const expiredCount = data.filter((doc) => doc.status === "expired").length; //Ø¹Ù„Ø´Ø§Ù† Ø§Ø¬ÙŠØ¨ Ø¹Ø¯Ø¯ Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ Ù‚Ø±Ø¨Øª ØªÙ†ØªÙ‡ÙŠ
     document.getElementById("expiredFooter").innerHTML =
-      ` عرض ${expiredCount} من أصل ${data.length} وثائق`;
+      ` Ø¹Ø±Ø¶ ${expiredCount} Ù…Ù† Ø£ØµÙ„ ${data.length} ÙˆØ«Ø§Ø¦Ù‚`;
   }
 
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®Ù Ø§Ø¡ looder
 }
 
-//* حذف عنصر
+//* حذف عنصر — مع تأكيد (MISS-004 Fix)
 async function deletItem(id) {
-  const api = await fetch(
-    `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents/${id}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${tokenUser}`,
-      },
-    },
-  );
-  let dat = await api.json();
-  // console.log(dat);
-  if (dat.success) {
-    // console.log("Deleted successfully");
-    Swal.fire({
-      icon: "success",
-      title: "تم حذف العنصر بنجاح",
-      text: "",
-      timer: 3000,
-      showConfirmButton: false,
-      buttonsStyling: false,
-    });
+  const confirm = await Swal.fire({
+    title: "هل أنت متأكد؟",
+    text: "لن تتمكن من استرداد هذه الوثيقة بعد الحذف!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "نعم، احذف",
+    cancelButtonText: "إلغاء",
+  });
 
-    // إعادة تحميل البيانات بعد الحذف
-    getData();
+  if (!confirm.isConfirmed) return;
+
+  try {
+    loooder.classList.remove("d-none");
+    const api = await fetch(
+      `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenUser}`,
+        },
+      },
+    );
+    let dat = await api.json();
+    if (dat.success) {
+      Swal.fire({
+        icon: "success",
+        title: "تم حذف العنصر بنجاح",
+        text: "",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      getData();
+    } else {
+      Swal.fire("فشل الحذف", dat.message || "", "error");
+    }
+  } catch (err) {
+    console.error("Delete error:", err);
+    Swal.fire("حصل خطأ في الاتصال", "", "error");
+  } finally {
+    loooder.classList.add("d-none");
   }
 }
-//* تعديل العنصر
+//* ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ø¹Ù†ØµØ±
 
 async function upDate(id) {
-  // 1) نجيب العنصر الحالي من الداتا
+  // 1) Ù†Ø¬ÙŠØ¨ Ø§Ù„Ø¹Ù†ØµØ± Ø§Ù„Ø­Ø§Ù„ÙŠ Ù…Ù† Ø§Ù„Ø¯Ø§ØªØ§
   const item = allDocs.find((doc) => doc._id === id);
-  if (!item) return; // لو مش موجود نخرج
+  if (!item) return; // Ù„Ùˆ Ù…Ø´ Ù…ÙˆØ¬ÙˆØ¯ Ù†Ø®Ø±Ø¬
 
-  // 2) نفتح نافذة تعديل
+  // 2) Ù†ÙØªØ­ Ù†Ø§ÙØ°Ø© ØªØ¹Ø¯ÙŠÙ„
   const { value } = await Swal.fire({
-    title: "تعديل الوثيقة",
+    title: "ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„ÙˆØ«ÙŠÙ‚Ø©",
 
-    // فورم بسيط فيه البيانات القديمة
+    // ÙÙˆØ±Ù… Ø¨Ø³ÙŠØ· ÙÙŠÙ‡ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù‚Ø¯ÙŠÙ…Ø©
     html: `
       <input id="title" class="swal2-input" value="${item.title}">
       <input id="docId" class="swal2-input" value="${item.documentId}">
@@ -596,17 +619,17 @@ async function upDate(id) {
     `,
 
     showCancelButton: true,
-    confirmButtonText: "تحديث",
-    cancelButtonText: "إلغاء",
+    confirmButtonText: "ØªØ­Ø¯ÙŠØ«",
+    cancelButtonText: "Ø¥Ù„ØºØ§Ø¡",
 
-    // 3) نتأكد إن كل حاجة متعبية
+    // 3) Ù†ØªØ£ÙƒØ¯ Ø¥Ù† ÙƒÙ„ Ø­Ø§Ø¬Ø© Ù…ØªØ¹Ø¨ÙŠØ©
     preConfirm: () => {
       const title = document.getElementById("title").value.trim();
       const documentId = document.getElementById("docId").value.trim();
       const expiryDate = document.getElementById("expiry").value;
 
       if (!title || !documentId || !expiryDate) {
-        Swal.showValidationMessage("كل الحقول مطلوبة");
+        Swal.showValidationMessage("ÙƒÙ„ Ø§Ù„Ø­Ù‚ÙˆÙ„ Ù…Ø·Ù„ÙˆØ¨Ø©");
         return false;
       }
 
@@ -614,14 +637,14 @@ async function upDate(id) {
     },
   });
 
-  // لو المستخدم لغى
+  // Ù„Ùˆ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ù„ØºÙ‰
   if (!value) return;
 
   try {
-    // 4) نظهر اللودر
+    // 4) Ù†Ø¸Ù‡Ø± Ø§Ù„Ù„ÙˆØ¯Ø±
     loooder.classList.remove("d-none");
 
-    // 5) نبعت التعديل للسيرفر
+    // 5) Ù†Ø¨Ø¹Øª Ø§Ù„ØªØ¹Ø¯ÙŠÙ„ Ù„Ù„Ø³ÙŠØ±ÙØ±
     const res = await fetch(
       `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents/${id}`,
       {
@@ -640,122 +663,123 @@ async function upDate(id) {
 
     const data = await res.json();
 
-    // 6) نعرض النتيجة
+    // 6) Ù†Ø¹Ø±Ø¶ Ø§Ù„Ù†ØªÙŠØ¬Ø©
     if (data.success) {
-      Swal.fire("تم التحديث بنجاح", "", "success");
-      getData(); // تحديث البيانات
+      Swal.fire("ØªÙ… Ø§Ù„ØªØ­Ø¯ÙŠØ« Ø¨Ù†Ø¬Ø§Ø­", "", "success");
+      getData(); // ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª
     } else {
-      Swal.fire("فشل التحديث", "", "error");
+      Swal.fire("ÙØ´Ù„ Ø§Ù„ØªØ­Ø¯ÙŠØ«", "", "error");
     }
   } catch (error) {
     console.error(error);
-    Swal.fire("حصل خطأ", "", "error");
+    Swal.fire("Ø­ØµÙ„ Ø®Ø·Ø£", "", "error");
   } finally {
-    // 7) نخفّي اللودر
+    // 7) Ù†Ø®ÙÙ‘ÙŠ Ø§Ù„Ù„ÙˆØ¯Ø±
     loooder.classList.add("d-none");
   }
 }
 //?=====>  validation   <====
 
 //!=====>  call Function   <====
-getData(); //اظهار البيانات
+getData(); //Ø§Ø¸Ù‡Ø§Ø± Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª
 
-// ================== جلب الإشعارات من السيرفر ==================
+// ================== Ø¬Ù„Ø¨ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ù…Ù† Ø§Ù„Ø³ÙŠØ±ÙØ± ==================
 async function getNotifications() {
   try {
-    // طلب جلب الإشعارات من الـ API
+    // Ø·Ù„Ø¨ Ø¬Ù„Ø¨ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ù…Ù† Ø§Ù„Ù€ API
     const res = await fetch(
       `https://graduation-backend-production-d4bd.up.railway.app/api/v1/notifications?t=${Date.now()}`,
       {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${tokenUser}`, // التوكن لتحديد المستخدم
-          "Cache-Control": "no-cache", // منع الكاش
+          Authorization: `Bearer ${tokenUser}`, // Ø§Ù„ØªÙˆÙƒÙ† Ù„ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…
+          "Cache-Control": "no-cache", // Ù…Ù†Ø¹ Ø§Ù„ÙƒØ§Ø´
           Pragma: "no-cache",
         },
-        cache: "no-store", // إجبار تحديث البيانات
+        cache: "no-store", // Ø¥Ø¬Ø¨Ø§Ø± ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª
       },
     );
 
-    // تحويل الرد إلى JSON
+    // ØªØ­ÙˆÙŠÙ„ Ø§Ù„Ø±Ø¯ Ø¥Ù„Ù‰ JSON
     const dat = await res.json();
 
-    // لو الطلب ناجح
+    // Ù„Ùˆ Ø§Ù„Ø·Ù„Ø¨ Ù†Ø§Ø¬Ø­
     if (dat.success) {
       const notifications = dat?.data?.notifications || [];
 
-      // فلترة الإشعارات غير المقروءة فقط
+      // ÙÙ„ØªØ±Ø© Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª ØºÙŠØ± Ø§Ù„Ù…Ù‚Ø±ÙˆØ¡Ø© ÙÙ‚Ø·
       const unread = notifications.filter((n) => !n.read);
 
-      // إرسالها للعرض
+      // Ø¥Ø±Ø³Ø§Ù„Ù‡Ø§ Ù„Ù„Ø¹Ø±Ø¶
       renderNotifications(unread);
     }
   } catch (err) {
-    // في حالة حدوث خطأ
+    // ÙÙŠ Ø­Ø§Ù„Ø© Ø­Ø¯ÙˆØ« Ø®Ø·Ø£
     console.error("Error loading notifications:", err);
   }
 }
 
-// ================== عرض الإشعارات في القائمة ==================
+// ================== Ø¹Ø±Ø¶ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª ÙÙŠ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© ==================
 function renderNotifications(notifications) {
-  const list = document.getElementById("notiList"); // قائمة الإشعارات
-  const count = document.getElementById("notiCount"); // العداد
+  const list = document.getElementById("notiList"); // Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª
+  const count = document.getElementById("notiCount"); // Ø§Ù„Ø¹Ø¯Ø§Ø¯
 
-  // تفريغ القائمة قبل إعادة الرسم
+  // ØªÙØ±ÙŠØº Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ù‚Ø¨Ù„ Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø±Ø³Ù…
   list.innerHTML = "";
 
-  // لو مفيش إشعارات
+  // Ù„Ùˆ Ù…ÙÙŠØ´ Ø¥Ø´Ø¹Ø§Ø±Ø§Øª
   if (notifications.length === 0) {
     list.innerHTML = `
       <li class="dropdown-item text-center text-muted">
-        لا يوجد إشعارات
+        Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø¥Ø´Ø¹Ø§Ø±Ø§Øª
       </li>
     `;
 
-    // تصفير العداد
+    // ØªØµÙÙŠØ± Ø§Ù„Ø¹Ø¯Ø§Ø¯
     count.textContent = 0;
     return;
   }
 
-  // عرض كل إشعار
+  // Ø¹Ø±Ø¶ ÙƒÙ„ Ø¥Ø´Ø¹Ø§Ø±
   notifications.forEach((n) => {
     list.innerHTML += `
       <li class="dropdown-item" style="cursor:pointer"
           onclick="markAsRead('${n._id}')">
 
-        <!-- نص الإشعار -->
+        <!-- Ù†Øµ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø± -->
         ${n.message}
 
       </li>
     `;
   });
 
-  // تحديث عدد الإشعارات غير المقروءة
+  // ØªØ­Ø¯ÙŠØ« Ø¹Ø¯Ø¯ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª ØºÙŠØ± Ø§Ù„Ù…Ù‚Ø±ÙˆØ¡Ø©
   count.textContent = notifications.length;
 }
 
-// ================== تعليم الإشعار كمقروء ==================
+// ================== ØªØ¹Ù„ÙŠÙ… Ø§Ù„Ø¥Ø´Ø¹Ø§Ø± ÙƒÙ…Ù‚Ø±ÙˆØ¡ ==================
 async function markAsRead(id) {
   try {
-    // إرسال طلب لتغيير حالة الإشعار إلى مقروء
+    // Ø¥Ø±Ø³Ø§Ù„ Ø·Ù„Ø¨ Ù„ØªØºÙŠÙŠØ± Ø­Ø§Ù„Ø© Ø§Ù„Ø¥Ø´Ø¹Ø§Ø± Ø¥Ù„Ù‰ Ù…Ù‚Ø±ÙˆØ¡
     await fetch(
       `https://graduation-backend-production-d4bd.up.railway.app/api/v1/notifications/${id}/read`,
       {
         method: "PATCH",
         headers: {
-          Authorization: `Bearer ${tokenUser}`, // التحقق من المستخدم
+          Authorization: `Bearer ${tokenUser}`, // Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…
         },
       },
     );
 
-    // إعادة تحميل الإشعارات بعد التحديث
+    // Ø¥Ø¹Ø§Ø¯Ø© ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ø¨Ø¹Ø¯ Ø§Ù„ØªØ­Ø¯ÙŠØ«
     getNotifications();
   } catch (err) {
-    // في حالة خطأ
+    // ÙÙŠ Ø­Ø§Ù„Ø© Ø®Ø·Ø£
     console.error("Error marking as read:", err);
   }
 }
 
-// ================== تشغيل الإشعارات عند فتح الصفحة ==================
-// أول ما الصفحة تفتح نجيب الإشعارات
+// ================== ØªØ´ØºÙŠÙ„ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ø¹Ù†Ø¯ ÙØªØ­ Ø§Ù„ØµÙØ­Ø© ==================
+// Ø£ÙˆÙ„ Ù…Ø§ Ø§Ù„ØµÙØ­Ø© ØªÙØªØ­ Ù†Ø¬ÙŠØ¨ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª
 getNotifications();
+

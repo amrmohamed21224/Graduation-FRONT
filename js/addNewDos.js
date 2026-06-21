@@ -11,12 +11,12 @@ const tokenUser = localStorage.getItem("tokenUser");
 //*=====>  events   <====
 // log out
 document.getElementById("logOut").addEventListener("click", function () {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
   localStorage.removeItem("tokenUser");
   location.href = "./signIn.html";
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 });
-//اجيب اول الصفحه
+//Ø§Ø¬ÙŠØ¨ Ø§ÙˆÙ„ Ø§Ù„ØµÙØ­Ù‡
 window.scrollTo({
   top: 0,
   // behavior: "",
@@ -26,7 +26,7 @@ window.scrollTo({
 document.getElementById("submitData").addEventListener("click", function (e) {
   e.preventDefault();
   // setForm();
-  //* تمنع ارسال البيانات لو الحقول فارغه
+  //* ØªÙ…Ù†Ø¹ Ø§Ø±Ø³Ø§Ù„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ù„Ùˆ Ø§Ù„Ø­Ù‚ÙˆÙ„ ÙØ§Ø±ØºÙ‡
   if (
     !NameInut.value ||
     !locationDosInput.value ||
@@ -35,8 +35,8 @@ document.getElementById("submitData").addEventListener("click", function (e) {
   ) {
     Swal.fire({
       icon: "error",
-      title: "خطاء في حفظ البيانات...",
-      text: "البيانات غير مكتمله",
+      title: "Ø®Ø·Ø§Ø¡ ÙÙŠ Ø­ÙØ¸ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª...",
+      text: "Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª ØºÙŠØ± Ù…ÙƒØªÙ…Ù„Ù‡",
       timer: 3000,
       showConfirmButton: false,
       buttonsStyling: false,
@@ -53,14 +53,25 @@ document.getElementById("submitData").addEventListener("click", function (e) {
     cancelButtonColor: "#d33",
     confirmButtonText: "نعم، أضف",
     cancelButtonText: "إلغاء",
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.isConfirmed) {
-      setForm();
-
-      Swal.fire({
-        title: "تمت الإضافة بنجاح",
-        icon: "success",
-      });
+      const success = await setForm(); // انتظر الAPI الاول
+      if (success) {
+        Swal.fire({
+          title: "تمت الإضافة بنجاح",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          location.href = "./add.html"; // انتقل لقائمة الوثائق
+        });
+      } else {
+        Swal.fire({
+          title: "فشل حفظ الوثيقة",
+          text: "يرجى المحاولة مرة أخرى",
+          icon: "error",
+        });
+      }
     }
   });
   loooder.classList.remove("d-none"); //اظهار looder
@@ -69,7 +80,7 @@ document.getElementById("submitData").addEventListener("click", function (e) {
 //clear Data
 document.getElementById("clear").addEventListener("click", function (e) {
   e.preventDefault();
-  //* تمنع حذف البيانات لو الحقول فارغه
+  //* ØªÙ…Ù†Ø¹ Ø­Ø°Ù  Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ù„Ùˆ Ø§Ù„Ø­Ù‚ÙˆÙ„ Ù Ø§Ø±ØºÙ‡
   if (
     !NameInut.value &&
     !locationDosInput.value &&
@@ -78,8 +89,8 @@ document.getElementById("clear").addEventListener("click", function (e) {
   ) {
     Swal.fire({
       icon: "error",
-      title: "لا يوجد بيانات لحذفها",
-      text: "يجب ادخال بيانات اولا",
+      title: "Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø¨ÙŠØ§Ù†Ø§Øª Ù„Ø­Ø°ÙÙ‡Ø§",
+      text: "ÙŠØ¬Ø¨ Ø§Ø¯Ø®Ø§Ù„ Ø¨ÙŠØ§Ù†Ø§Øª Ø§ÙˆÙ„Ø§",
       timer: 3000,
       showConfirmButton: false,
       buttonsStyling: false,
@@ -87,19 +98,19 @@ document.getElementById("clear").addEventListener("click", function (e) {
     return;
   }
   Swal.fire({
-    title: "هل انتا متاكد !",
-    text: "لن تتمكن من التراجع عن هذا.....!",
+    title: "Ù‡Ù„ Ø§Ù†ØªØ§ Ù…ØªØ§ÙƒØ¯ !",
+    text: "Ù„Ù† ØªØªÙ…ÙƒÙ† Ù…Ù† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§.....!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "نعم , أحذف",
-    cancelButtonText: "إلغاء",
+    confirmButtonText: "Ù†Ø¹Ù… , Ø£Ø­Ø°Ù",
+    cancelButtonText: "Ø¥Ù„ØºØ§Ø¡",
   }).then((result) => {
     if (result.isConfirmed) {
       clearForm();
       Swal.fire({
-        title: "تم الحذف!",
+        title: "ØªÙ… Ø§Ù„Ø­Ø°Ù!",
         text: "",
         icon: "success",
       });
@@ -109,39 +120,40 @@ document.getElementById("clear").addEventListener("click", function (e) {
   // console.log("delet");
 });
 //!=====>  function   <====
-//سحب البيانات من الفورم
-function setForm() {
+//Ø³Ø­Ø¨ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ù…Ù† Ø§Ù„Ù ÙˆØ±Ù…
+async function setForm() {
   const NewDos = {
     title: NameInut.value,
     documentId: locationDosInput.value,
     issueDate: new Date(startDateInput.value).toISOString(),
     expiryDate: new Date(endDateInput.value).toISOString(),
   };
-  console.log(NewDos);
-  sendDataBacend(NewDos);
+  return await sendDataBacend(NewDos);
 }
 
-//ارسال البيانات للباك اند
+//Ø§Ø±Ø³Ø§Ù„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ù„Ù„Ø¨Ø§Ùƒ Ø§Ù†Ø¯
 async function sendDataBacend(NewDos) {
-  loooder.classList.remove("d-none"); //اظهار looder
-
-  const api = await fetch(
-    `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${tokenUser}`,
+  try {
+    loooder.classList.remove("d-none"); //اظهار looder
+    const api = await fetch(
+      `https://graduation-backend-production-d4bd.up.railway.app/api/v1/documents`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenUser}`,
+        },
+        body: JSON.stringify(NewDos),
       },
-      body: JSON.stringify(NewDos),
-    },
-  );
-  const dat = await api.json();
-  loooder.classList.add("d-none"); //اخفاء looder
-
-  // if (!api.ok) {
-  //   console.log("FULL ERROR:", dat.error);
-  // }
+    );
+    const dat = await api.json();
+    loooder.classList.add("d-none"); //اخفاء looder
+    return dat.success === true;
+  } catch (err) {
+    loooder.classList.add("d-none");
+    console.error("Error saving document:", err);
+    return false;
+  }
 }
 
 //clearForm
@@ -153,3 +165,4 @@ function clearForm() {
 }
 
 //?=====>  validation   <====
+

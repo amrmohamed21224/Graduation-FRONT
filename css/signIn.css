@@ -1,15 +1,21 @@
-/* ali ead */
+/* ============================================================
+   Auth Pages (signIn + register) — Clean & Responsive
+   ============================================================ */
+
+:root {
+  --auth-primary: #1e40af;
+  --auth-primary-dark: #1d35a0;
+  --auth-primary-hover: #2548b8;
+}
+
 #signIn {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 60px 0; 
-    margin-top: 30px; */
 }
-:root {
-  --main-color: #1e40af;
-}
+
+/* ── Card ── */
 #signIn .main-card {
   background: #fff;
   border-radius: 25px;
@@ -17,6 +23,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
+/* ── Form Section ── */
 #signIn .form-section {
   padding: 45px;
 }
@@ -32,6 +39,7 @@
   margin-bottom: 25px;
 }
 
+/* ── Tabs ── */
 #signIn .tabs {
   display: flex;
   background: #f1f3f6;
@@ -53,8 +61,9 @@
   color: #fff;
 }
 
+/* ── Input Group (single definition) ── */
 #signIn .input-group {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   position: relative;
 }
 
@@ -64,37 +73,79 @@
   top: 50%;
   transform: translateY(-50%);
   color: #888;
+  pointer-events: none;
 }
+
 #signIn .input-group input {
   width: 100%;
-  height: 55px;
+  height: 50px;
   padding-left: 40px;
   padding-right: 15px;
   border-radius: 10px;
-  transition: all 0.3s ease;
-  border: 1px solid gray;
+  border: 1.5px solid #dde1ea;
   outline: none;
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  background: #f9fafc;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 #signIn .input-group input:focus {
-  border-color: 2px var(--main-color);
-  box-shadow: 0 0 0 0.15rem rgba(30, 64, 175, 0.25);
+  border-color: var(--auth-primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.18);
 }
-#signIn .login-btn {
+
+/* ── Password Box ── */
+#signIn .password-box {
+  position: relative;
+}
+
+#signIn .password-box i#togglePassword,
+#signIn .password-box i.toggle-password {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  pointer-events: all;
+  transition: color 0.2s;
+}
+
+#signIn .password-box i#togglePassword:hover,
+#signIn .password-box i.toggle-password:hover {
+  color: var(--auth-primary);
+}
+
+/* ── Buttons ── */
+#signIn .login-btn,
+#signIn .register-btn {
   background: #2f55d4;
   color: #fff;
   border: none;
   width: 100%;
-  height: 48px;
+  height: 50px;
   border-radius: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 15px;
   margin-top: 10px;
+  font-family: "Cairo", sans-serif;
+  transition: background 0.25s ease, transform 0.15s ease;
 }
 
-#signIn .login-btn:hover {
-  background: #2548b8;
+#signIn .login-btn:hover,
+#signIn .register-btn:hover {
+  background: var(--auth-primary-hover);
+  transform: translateY(-1px);
 }
 
+#signIn .login-btn:active,
+#signIn .register-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Blue side panel ── */
 #signIn .blue-section {
   background: linear-gradient(135deg, #2f55d4, #2443b2);
   color: #fff;
@@ -128,67 +179,33 @@
   opacity: 0.9;
 }
 
-#signIn .password-box {
-  position: relative;
-}
-
-#signIn .password-box i {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #777;
-}
-
-#signIn .input-group {
-  margin-bottom: 15px;
-  position: relative;
-}
-
-#signIn .input-group i {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-}
-
-#signIn .input-group input {
-  width: 100%;
-  height: 45px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  padding-left: 40px;
-  padding-right: 15px;
-}
-
-#signIn .register-btn {
-  background: #2f55d4;
-  color: #fff;
-  border: none;
-  width: 100%;
-  height: 48px;
-  border-radius: 12px;
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-#signIn .register-btn:hover {
-  background: #2548b8;
-}
-
-@media (max-width: 768px) {
-  #signIn .main-card {
-    margin: 0;
-    /* padding: 20px; */
-    border-radius: 20px;
-    width: 100%;
-  }
-}
-
+/* ── Toast positioning ── */
 .toast-right-center {
   top: 15% !important;
   right: 12px !important;
   transform: translateY(-50%) !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  #signIn .main-card {
+    margin: 0;
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  /* Reduce form padding significantly on mobile */
+  #signIn .form-section {
+    padding: 24px 20px;
+  }
+
+  #signIn .blue-section {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #signIn .form-section {
+    padding: 20px 16px;
+  }
 }

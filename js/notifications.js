@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
   const notiList = document.getElementById("notiList");
   const notiCount = document.getElementById("notiCount");
   const bellBtn = document.querySelector('[data-bs-toggle="dropdown"]');
   const tokenUser = localStorage.getItem("tokenUser");
 
-  // ================== لما المستخدم يفتح الجرس ==================
+  // ================== Ù„Ù…Ø§ Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… ÙŠÙØªØ­ Ø§Ù„Ø¬Ø±Ø³ ==================
   bellBtn.addEventListener("show.bs.dropdown", async () => {
     const notifications = await getNotifications();
     renderDropdownNotifications(notifications);
     updateUnreadCount(notifications);
   });
 
-  // ================== جلب الإشعارات من السيرفر ==================
+  // ================== Ø¬Ù„Ø¨ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ù…Ù† Ø§Ù„Ø³ÙŠØ±ÙØ± ==================
   async function getNotifications() {
     try {
       const res = await fetch(
@@ -34,14 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ================== عرض الإشعارات داخل الـ dropdown ==================
+  // ================== Ø¹Ø±Ø¶ Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª Ø¯Ø§Ø®Ù„ Ø§Ù„Ù€ dropdown ==================
   function renderDropdownNotifications(notifications) {
     notiList.innerHTML = "";
 
     if (!notifications.length) {
       notiList.innerHTML = `
         <li class="dropdown-item text-center text-muted">
-          لا يوجد إشعارات
+          Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ø¥Ø´Ø¹Ø§Ø±Ø§Øª
         </li>`;
       return;
     }
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ================== تعليم الإشعار كمقروء ==================
+  // ================== ØªØ¹Ù„ÙŠÙ… Ø§Ù„Ø¥Ø´Ø¹Ø§Ø± ÙƒÙ…Ù‚Ø±ÙˆØ¡ ==================
   async function markAsRead(id) {
     try {
       await fetch(
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ================== تحديث العداد ==================
+  // ================== ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¹Ø¯Ø§Ø¯ ==================
   function updateUnreadCount(notifications) {
     const unread = notifications.filter((n) => !n.isRead).length;
     updateBadge(unread);
@@ -106,3 +106,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+

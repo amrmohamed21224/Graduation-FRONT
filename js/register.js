@@ -1,10 +1,10 @@
-//* ================> صفحه انشاء حساب  <===================
+﻿//* ================> ØµÙØ­Ù‡ Ø§Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨  <===================
 
 // ?=====>  globel   <====
 const inputs = document.querySelectorAll("input");
 const btnRegister = document.getElementById("btnRegister");
 const formData = document.querySelector("form");
-let isValid = false; //تاكد ان كل الداتا صحيحه
+let isValid = false; //ØªØ§ÙƒØ¯ Ø§Ù† ÙƒÙ„ Ø§Ù„Ø¯Ø§ØªØ§ ØµØ­ÙŠØ­Ù‡
 //!=====>  when start   <====
 
 //*=====>  events   <====
@@ -13,7 +13,7 @@ formData.addEventListener("submit", function (e) {
   e.preventDefault();
   // console.log("ffffff ");
   if (isValid === true) {
-    //لو فلديشن تمام ابعت الداتا للباك
+    //Ù„Ùˆ ÙÙ„Ø¯ÙŠØ´Ù† ØªÙ…Ø§Ù… Ø§Ø¨Ø¹Øª Ø§Ù„Ø¯Ø§ØªØ§ Ù„Ù„Ø¨Ø§Ùƒ
     setForm();
   }
 });
@@ -24,9 +24,9 @@ formData.addEventListener("input", function () {
     validationEmail(inputs[1]) &&
     validationPassword(inputs[2])
   ) {
-    isValid = true; //الداتا مكتوبه صح
+    isValid = true; //Ø§Ù„Ø¯Ø§ØªØ§ Ù…ÙƒØªÙˆØ¨Ù‡ ØµØ­
   } else {
-    isValid = false; // الداتا فيها غلط
+    isValid = false; // Ø§Ù„Ø¯Ø§ØªØ§ ÙÙŠÙ‡Ø§ ØºÙ„Ø·
   }
 });
 
@@ -43,7 +43,7 @@ formData.addEventListener("input", function () {
 //   validationPassword(inputs[2]);
 // });
 
-//اجيب اول الصفحه
+//Ø§Ø¬ÙŠØ¨ Ø§ÙˆÙ„ Ø§Ù„ØµÙØ­Ù‡
 window.scrollTo({
   top: 0,
   // behavior: "",
@@ -64,7 +64,7 @@ toggleRegisterPassword?.addEventListener("click", () => {
 });
 
 //!=====>  function   <====
-// هعمل فنكشن تصنع فورم
+// Ù‡Ø¹Ù…Ù„ ÙÙ†ÙƒØ´Ù† ØªØµÙ†Ø¹ ÙÙˆØ±Ù…
 function setForm() {
   const user = {
     name: inputs[0].value,
@@ -77,7 +77,7 @@ function setForm() {
 }
 //callapi
 async function registerForm(userData) {
-  loooder.classList.remove("d-none"); //اظهار looder
+  loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
 
   const api = await fetch(
     `https://graduation-backend-production-d4bd.up.railway.app/api/v1/auth/register`,
@@ -91,7 +91,7 @@ async function registerForm(userData) {
     },
   );
   const res = await api.json();
-  loooder.classList.add("d-none"); //اخفاء looder
+  loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
 
   toastr.options = {
     positionClass: "toast-right-center",
@@ -100,14 +100,14 @@ async function registerForm(userData) {
     progressBar: true,
   };
   if (res.success === true) {
-    // loooder.classList.remove("d-none"); //اظهار looder
+    // loooder.classList.remove("d-none"); //Ø§Ø¸Ù‡Ø§Ø± looder
 
-    toastr.success("تم انشاء حساب بنجاح"); //alert
-    location.href = "./signIn.html"; //وديني لصفحه تسجيل الدخول لو الداتا بتاعتي صح
-    loooder.classList.add("d-none"); //اخفاء looder
+    toastr.success("ØªÙ… Ø§Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨ Ø¨Ù†Ø¬Ø§Ø­"); //alert
+    location.href = "./signIn.html"; //ÙˆØ¯ÙŠÙ†ÙŠ Ù„ØµÙØ­Ù‡ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ùˆ Ø§Ù„Ø¯Ø§ØªØ§ Ø¨ØªØ§Ø¹ØªÙŠ ØµØ­
+    loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
   } else {
-    toastr.success(res.message); //alert
-    // loooder.classList.add("d-none"); //اخفاء looder
+    toastr.error(res.message); //alert
+    // loooder.classList.add("d-none"); //Ø§Ø®ÙØ§Ø¡ looder
   }
 
   // console.log(res);
@@ -162,3 +162,4 @@ function validationPassword(inputPassword) {
     return false;
   }
 }
+

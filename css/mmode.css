@@ -1,9 +1,9 @@
 /* ================= DARK THEME ROOT ================= */
 body.dark {
   --main-color: #0b1220;
-  --text-color: #565a60; /* رمادي غامق مريح */
+  --text-color: #565a60;
   --span-color: #38bdf8;
-  --content-text-color: #5b6169; /* رمادي متوسط */
+  --content-text-color: #5b6169;
   --buttom-color: #1d4ed8;
 
   --sideBarText: #cbd5e1;
@@ -15,7 +15,7 @@ body.dark {
   --slate-700: #e5e7eb;
 
   background: #0b1220 !important;
-  color: #768396 !important;
+  color: #c9d1de !important;
 }
 
 /* ================= GENERAL TEXT ================= */
@@ -25,7 +25,7 @@ body.dark span,
 body.dark li,
 body.dark small,
 body.dark label {
-  color: #818997 !important;
+  color: #9aa3b1 !important;
 }
 
 body.dark h1,
@@ -139,7 +139,7 @@ body.dark tbody tr {
 }
 
 body.dark tbody tr:hover {
-  background: #0b1220 !important;
+  background: #131c2f !important;
 }
 
 /* ================= SCROLLBAR ================= */
@@ -156,10 +156,57 @@ body.dark ::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
-/* ================= FORCE DARK BACKGROUNDS ================= */
-body.dark [class*="bg-"],
-body.dark .bg-white {
+/* ================= FORCE DARK BACKGROUNDS (SAFE LIST ONLY) ================= */
+/* FIX: Only target neutral/white backgrounds, NOT semantic badge colors like bg-success, bg-danger, bg-warning */
+body.dark .bg-white,
+body.dark .bg-light,
+body.dark .bg-body,
+body.dark .bg-body-tertiary,
+body.dark .bg-body-secondary,
+body.dark .table-light,
+body.dark .dropdown-menu {
   background-color: #0f172a !important;
+  color: #d1d5db !important;
+  border-color: #1e293b !important;
+}
+
+/* Dashboard doc-cards dark mode */
+body.dark #dashboard .doc-card {
+  background: #0f172a !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Dashboard stats card */
+body.dark #dashboard .stats-card {
+  background: #0f172a !important;
+}
+
+/* Dashboard note section */
+body.dark #dashboard .note {
+  background: #1e293b !important;
+  color: #9aa3b1 !important;
+}
+
+/* Keep semantic badge colors alive in dark mode */
+body.dark .status-green {
+  background: #064e3b !important;
+  color: #34d399 !important;
+}
+
+body.dark .status-yellow {
+  background: #422006 !important;
+  color: #fbbf24 !important;
+}
+
+body.dark .status-denger {
+  background: #450a0a !important;
+  color: #f87171 !important;
+}
+
+/* Table add-page badge colors preserved */
+body.dark tbody span[style*="color: #10b981"],
+body.dark tbody span[style*="color: #000"] {
+  color: inherit !important;
 }
 
 /* ================= SIDEBAR BUTTON (FIX FINAL) ================= */
@@ -168,28 +215,52 @@ body.dark button.aside-toggle,
 body.dark #sidebarToggle,
 body.dark .sidebar-toggle,
 body.dark .aside-toggle {
-  background-color: #f1f5f9 !important; /* فاتح */
-  color: #111827 !important; /* غامق */
+  background-color: #f1f5f9 !important;
+  color: #111827 !important;
   border: 1px solid #cbd5e1 !important;
   opacity: 1 !important;
   box-shadow: none !important;
 }
 
-/* أيقونة الزر */
 body.dark .sidebar-toggle i,
 body.dark .aside-toggle i,
 body.dark #sidebarToggle i {
   color: #111827 !important;
 }
 
-/* hover */
 body.dark .sidebar-toggle:hover,
 body.dark .aside-toggle:hover,
 body.dark #sidebarToggle:hover {
   background-color: #e2e8f0 !important;
 }
+
 body.dark .navSearch,
 body.dark .navbar-toggler {
   background-color: #39435d !important;
   border: none;
 }
+
+/* ================= OFFCANVAS CLOSE BTN ================= */
+body.dark .offcanvas-header .btn-close {
+  filter: invert(1) brightness(2);
+  opacity: 0.85;
+}
+
+/* ================= DROPDOWN MENU TEXT ================= */
+body.dark .dropdown-item {
+  color: #c9d1de !important;
+}
+
+body.dark .dropdown-item:hover {
+  background-color: #1e293b !important;
+  color: #e5e7eb !important;
+}
+
+
+/* ================= GENERAL TEXT ================= */
+body.dark p,
+body.dark a,
+body.dark span,
+body.dark li,
+
+
