@@ -48,7 +48,6 @@ body {
 
 /* start navbar */
 /* start navbar */
-.aside-color,
 .navbar {
   /* Premium Glassmorphism Effect */
   background-color: rgba(20, 91, 161, 0.95) !important;
@@ -58,6 +57,12 @@ body {
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.3s ease;
   padding: 0.8rem 1rem !important; /* Thicker navbar */
+}
+
+/* Offcanvas sidebar — fully opaque so the fixed navbar behind it doesn't bleed through */
+.aside-color {
+  background-color: #145ba1 !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* --- Global Navbar Layout Fix --- */
